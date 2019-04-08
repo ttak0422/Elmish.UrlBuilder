@@ -1,3 +1,11 @@
+# F#
+.fake/
+packages/
+build/
+obj
+bin
+out
+
 # Logs
 logs
 *.log

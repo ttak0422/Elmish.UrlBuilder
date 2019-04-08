@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/Url.fsproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="../Util.fs" />
+    <Compile Include="../Tests.Helper.fs" />
+    <Compile Include="../Tests.Url.fs" />
+    <Compile Include="../Tests.Builder.fs" />
+    <Compile Include="../Main.fs" />
+  </ItemGroup>
+  <Import Project="..\..\.paket\Paket.Restore.targets" />
+</Project>

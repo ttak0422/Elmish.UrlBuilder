@@ -1,0 +1,10 @@
+build:
+  verbosity: detailed
+
+image:
+  - Ubuntu
+
+stack: node 8
+
+build_script:
+  - sh: ./fake.sh build
