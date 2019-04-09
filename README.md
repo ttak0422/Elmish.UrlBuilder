@@ -186,9 +186,9 @@ absolute [] []
 	"/"
 *)
 
-absolute [ "packages"; "elm"; "core" ] []
+absolute [ "packages"; "elmish"; "elmish" ] []
 (*
-	"/packages/elm/core"
+	"/packages/elmish/elmish
 *)
 
 absolute [ "blog"; string 42 ] []
@@ -211,9 +211,9 @@ relative [] []
 	""
 *)
 
-relative [ "elm"; "core" ] []
+relative [ "elmish"; "elmish" ] []
 (*
-	"elm/core"
+	"elmish/elmish"
 *)
 
 relative [ "blog"; string 42 ] []
@@ -258,11 +258,11 @@ custom // Root -> string list -> QueryParameter list -> Option<string> -> string
 
 // sample
 custom Absolute
-  [ "packages"; "elm"; "core"; "latest"; "String" ]
+  [ "packages"; "elmish"; "elmish"; "latest"; "String" ]
   []
   (Some "length")
 (*
-	"/packages/elm/core/latest/String#length"
+	"/packages/elmish/elmish/latest/String#length"
 *)
 
 custom Relative [ "there" ] [ str "name" "ferret" ] None
