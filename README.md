@@ -1,5 +1,6 @@
 # U
 [![Build status](https://ci.appveyor.com/api/projects/status/h9yptt1gr1folq1g?svg=true)](https://ci.appveyor.com/project/ttak0422/u)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ff726cda5320446ca1947c1aa439b8cc)](https://www.codacy.com/app/ttak0422/U?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ttak0422/U&amp;utm_campaign=Badge_Grade)
 
 ## About
 
@@ -108,10 +109,10 @@ percentDecode "%C2" = None
 
 ### Queries
 
-**<font color="Red">The following function name is different from elm/url</font>**
+**<font color = "Red">The following function name is different from elm/url</font>**
 
-- **<font color="Red">str (in elm/url is string)</font>**
-- **<font color="Red">num (in elm/url is int)</font>**
+- **<font color = "Red">str (in elm/url is string)</font>**
+- **<font color = "Red">num (in elm/url is int)</font>**
 
 ```fsharp
 type QueryPatameter = QueryPatameter of  keyValue : string * string
@@ -167,8 +168,7 @@ toQuery []
 *)
 ```
 
-
-### URLs
+### Builder
 
 ```fsharp
 type Root =
@@ -250,9 +250,6 @@ crossOrigin
 *)
 ```
 
-
-
-
 ```fsharp
 custom // Root -> string list -> QueryParameter list -> Option<string> -> string
 
@@ -279,4 +276,3 @@ custom
 	"https://example.com:8042/over/there?name=ferret#nose"
 *)
 ```
-
