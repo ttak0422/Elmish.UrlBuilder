@@ -1,5 +1,6 @@
 # U
 [![Build status](https://ci.appveyor.com/api/projects/status/h9yptt1gr1folq1g?svg=true)](https://ci.appveyor.com/project/ttak0422/u)
+[![Build Status](https://travis-ci.org/ttak0422/U.svg?branch=master)](https://travis-ci.org/ttak0422/U)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ff726cda5320446ca1947c1aa439b8cc)](https://www.codacy.com/app/ttak0422/U?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ttak0422/U&amp;utm_campaign=Badge_Grade)
 
 ## About
