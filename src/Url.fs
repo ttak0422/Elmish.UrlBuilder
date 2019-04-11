@@ -82,6 +82,15 @@ module Url =
                     chompBeforeFragment protocol
                         (Some(Helper.dropLeft (i + 1) str)) (Helper.left i str)
 
+    /// **Description**
+    ///
+    /// Turn a `Url` into a `string`.
+    ///
+    /// **Parameters**
+    ///   * `url` - parameter of type `Url`
+    ///
+    /// **Output Type**
+    ///   * `string`
     let toString (url : Url) : string =
         let http =
             match url.Protocol with
@@ -91,6 +100,46 @@ module Url =
         |> Internal.addPrefixed "?" url.Query
         |> Internal.addPrefixed "#" url.Fragment
 
+    /// **Description**
+    ///
+    /// Attempt to break a URL up into `Url`.
+    ///
+    /// ```
+    /// fromString "https://example.com:443"
+    /// (*
+    /// Some { Protocol = Https
+    ///        Host = "example.com"
+    ///        Port = Some 443
+    ///        Path = "/"
+    ///        Query = None
+    ///        Fragment = None }
+    /// *)
+    ///
+    /// fromString "https://example.com/hats?q=top%20hat"
+    /// (*
+    /// Some { Protocol = Https
+    ///        Host = "example.com"
+    ///        Port = None
+    ///        Path = "/hats"
+    ///        Query = Some "q=top%20hat"
+    ///        Fragment = None }
+    /// *)
+    ///
+    /// fromString "http://example.com/core/List/#map"
+    /// (*
+    /// Some { Protocol = Http
+    ///        Host = "example.com"
+    ///        Port = None
+    ///        Path = "/core/List/"
+    ///        Query = None
+    ///        Fragment = Some "map" }
+    /// *)
+    /// ```
+    ///
+    /// *Note* This function does not use `percentEncode` anything.
+    ///
+    /// **Parameters**
+    ///   * `str` - parameter of type `string`
     let fromString (str : string) : Option<Url> =
         if str.StartsWith "http://" then
             Internal.chompAfterProtocol Http (Helper.dropLeft 7 str)
@@ -98,8 +147,28 @@ module Url =
             Internal.chompAfterProtocol Https (Helper.dropLeft 8 str)
         else None
 
+    /// **Description**
+    ///
+    /// *Use ``Url.Builder`` instead!*
+    ///
+    /// Function like `absolute`, `relative`, and `crossOrigin` already do this automatically!
+    ///
+    /// **Parameters**
+    ///   * `str` - parameter of type `string`
+    ///
+    /// **Output Type**
+    ///   * `string`
     let percentEncode (str : string) : string = JS.encodeURIComponent str
 
+    /// **Description**
+    ///
+    /// *Use ``Elmish.Browser.UrlParser`` instead!*
+    ///
+    /// **Parameters**
+    ///   * `str` - parameter of type `string`
+    ///
+    /// **Output Type**
+    ///   * `Option<string>`
     let percentDecode (str : string) : Option<string> =
         try
             Some(JS.decodeURIComponent str)
