@@ -16,7 +16,7 @@ type Url =
       Fragment : Option<string> }
 
 module Url =
-    module private Internal =
+    module Internal =
         let addPort (maybePort : Option<int>) (starter : string) : string =
             match maybePort with
             | None -> starter

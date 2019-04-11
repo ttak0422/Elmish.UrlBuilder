@@ -1,5 +1,7 @@
 namespace U
 
+open Url
+
 type Root =
     | Absolute
     | Relative
@@ -20,9 +22,9 @@ module Builder =
             | CrossOrigin prePath -> prePath + "/"
 
     let num (key : string) (value : int) : QueryPatameter =
-        QueryPatameter(Url.percentEncode key, (string value))
+        QueryPatameter(percentEncode key, (string value))
     let str (key : string) (value : string) : QueryPatameter =
-        QueryPatameter(Url.percentEncode key, Url.percentEncode value)
+        QueryPatameter(percentEncode key, percentEncode value)
 
     let toQuery (parameters : QueryPatameter list) : string =
         match parameters with

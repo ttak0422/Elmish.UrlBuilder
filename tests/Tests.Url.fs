@@ -1,7 +1,7 @@
 module Tests.Url
 
-open U
 open Util.Testing
+open U
 open U.Url
 
 let tests : Test =
@@ -17,7 +17,7 @@ let tests : Test =
 
                                          let expected =
                                              "https://example.com:443/"
-                                         let actual = Url.toString url
+                                         let actual = toString url
                                          equal expected actual
                                      testCase "valid case 2" <| fun _ ->
                                          let url =
@@ -30,7 +30,7 @@ let tests : Test =
 
                                          let expected =
                                              "https://example.com/hats?q=top%20hat"
-                                         let actual = Url.toString url
+                                         let actual = toString url
                                          equal expected actual
                                      testCase "valid case 3" <| fun _ ->
                                          let url =
@@ -43,7 +43,7 @@ let tests : Test =
 
                                          let expected =
                                              "http://example.com/core/List/#map"
-                                         let actual = Url.toString url
+                                         let actual = toString url
                                          equal expected actual ]
           testList "addPort test" [ testCase "Some port" <| fun _ ->
                                         let starter = "https://foo.com"
@@ -299,7 +299,7 @@ let tests : Test =
                                                       Query = None
                                                       Fragment = None }
 
-                                           let actual = Url.fromString url
+                                           let actual = fromString url
                                            equal expected actual
                                        testCase "valid case 1'" <| fun _ ->
                                            let url = "https://example.com:443"
@@ -312,7 +312,7 @@ let tests : Test =
                                                       Query = None
                                                       Fragment = None }
 
-                                           let actual = Url.fromString url
+                                           let actual = fromString url
                                            equal expected actual
                                        testCase "valid case 2" <| fun _ ->
                                            let url =
@@ -326,7 +326,7 @@ let tests : Test =
                                                       Query = Some "q=top%20hat"
                                                       Fragment = None }
 
-                                           let actual = Url.fromString url
+                                           let actual = fromString url
                                            equal expected actual
                                        testCase "valid case 3" <| fun _ ->
                                            let url =
@@ -340,23 +340,23 @@ let tests : Test =
                                                       Query = None
                                                       Fragment = Some "map" }
 
-                                           let actual = Url.fromString url
+                                           let actual = fromString url
                                            equal expected actual
                                        testCase "invalid case 1 : no protocol" <| fun _ ->
                                            let url = "example.com:443"
-                                           let actual = Url.fromString url
+                                           let actual = fromString url
                                            let expected = None
                                            equal expected actual
                                        testCase
                                            "invalid case 2 : userinfo disallowed" <| fun _ ->
                                            let url = "http://tom@example.com"
                                            let expected = None
-                                           let actual = Url.fromString url
+                                           let actual = fromString url
                                            equal expected actual
                                        testCase "invalid case 3 : no host" <| fun _ ->
                                            let url = "http://#cats"
                                            let expected = None
-                                           let actual = Url.fromString url
+                                           let actual = fromString url
                                            equal expected actual ]
           testList "percentEncode test" [ testCase "ascii : nochange" <| fun _ ->
                                               let str = "hat"

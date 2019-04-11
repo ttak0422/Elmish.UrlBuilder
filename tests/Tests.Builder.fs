@@ -1,10 +1,8 @@
 module Tests.Builder
 
-open U
-open U.Helper
 open Util.Testing
+open U
 open U.Builder
-open Tests
 
 let tests : Test =
     testList "Builder" [ testList "toQueryPair" [ testCase "search=hat" <| fun _ ->
