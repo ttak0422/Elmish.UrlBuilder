@@ -76,7 +76,28 @@ let tests : Test =
                                                                     "hat"
                                                                 num "page" 2 ]
                                                   equal expected actual ]
-                         testList "abusolute" [ testCase "simple" <| fun _ ->
+                         testList "abusolute" [ testCase "simple case 1" <| fun _ ->
+                                                    let expected = "/"
+                                                    let actual = absolute [] []
+                                                    equal expected actual
+                                                testCase "simple case 2" <| fun _ ->
+                                                    let expected =
+                                                        "/packages/elmish/elmish"
+                                                    let actual =
+                                                        absolute
+                                                            [ "packages";
+                                                              "elmish"; "elmish" ]
+                                                            []
+                                                    equal expected actual
+                                                testCase "simple case 3" <| fun _ ->
+                                                    let expected = "/blog/42"
+
+                                                    let actual =
+                                                        absolute [ "blog"
+                                                                   string 42 ]
+                                                            []
+                                                    equal expected actual
+                                                testCase "simple case 4" <| fun _ ->
                                                     let expected =
                                                         "/products?search=hat&page=2"
 
