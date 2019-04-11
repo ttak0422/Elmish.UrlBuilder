@@ -1,5 +1,6 @@
 namespace U
 
+[<RequireQualifiedAccess>]
 module Helper =
     let indexes (sub : string) (str : string) : int list =
         let subLen = sub.Length

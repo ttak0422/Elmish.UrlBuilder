@@ -2,7 +2,6 @@ namespace U
 
 open System
 open Fable.Import
-open U.Helper
 
 type Protocol =
     | Http
@@ -17,7 +16,7 @@ type Url =
       Fragment : Option<string> }
 
 module Url =
-    module Internal =
+    module private Internal =
         let addPort (maybePort : Option<int>) (starter : string) : string =
             match maybePort with
             | None -> starter
@@ -33,7 +32,7 @@ module Url =
             (``params`` : Option<string>) (frag : Option<string>) (str : string) : Option<Url> =
             if String.IsNullOrEmpty str || str.Contains "@" then None
             else
-                match indexes ":" str with
+                match Helper.indexes ":" str with
                 | [] ->
                     Some { Protocol = protocol
                            Host = str
@@ -42,11 +41,11 @@ module Url =
                            Query = ``params``
                            Fragment = frag }
                 | [ i ] ->
-                    match toInt (dropLeft (i + 1) str) with
+                    match Helper.toInt (Helper.dropLeft (i + 1) str) with
                     | None -> None
                     | port ->
                         Some { Protocol = protocol
-                               Host = left i str
+                               Host = Helper.left i str
                                Port = port
                                Path = path
                                Query = ``params``
@@ -57,32 +56,33 @@ module Url =
             (frag : Option<string>) (str : string) : Option<Url> =
             if String.IsNullOrEmpty str then None
             else
-                match indexes "/" str with
+                match Helper.indexes "/" str with
                 | [] -> chompBeforePath protocol "/" ``params`` frag str
                 | i :: _ ->
-                    chompBeforePath protocol (dropLeft i str) ``params`` frag
-                        (left i str)
+                    chompBeforePath protocol (Helper.dropLeft i str) ``params``
+                        frag (Helper.left i str)
 
         let chompBeforeFragment (protocol : Protocol) (frag : Option<string>)
             (str : string) : Option<Url> =
             if String.IsNullOrEmpty str then None
             else
-                match indexes "?" str with
+                match Helper.indexes "?" str with
                 | [] -> chompBeforeQuery protocol None frag str
                 | i :: _ ->
-                    chompBeforeQuery protocol (Some(dropLeft (i + 1) str)) frag
-                        (left i str)
+                    chompBeforeQuery protocol
+                        (Some(Helper.dropLeft (i + 1) str)) frag
+                        (Helper.left i str)
 
         let chompAfterProtocol (protocol : Protocol) (str : string) : Option<Url> =
             if String.IsNullOrEmpty str then None
             else
-                match indexes "#" str with
+                match Helper.indexes "#" str with
                 | [] -> chompBeforeFragment protocol None str
                 | i :: _ ->
-                    chompBeforeFragment protocol (Some(dropLeft (i + 1) str))
-                        (left i str)
+                    chompBeforeFragment protocol
+                        (Some(Helper.dropLeft (i + 1) str)) (Helper.left i str)
 
-    let toString url : string =
+    let toString (url : Url) : string =
         let http =
             match url.Protocol with
             | Http -> "http://"
@@ -93,9 +93,9 @@ module Url =
 
     let fromString (str : string) : Option<Url> =
         if str.StartsWith "http://" then
-            Internal.chompAfterProtocol Http (dropLeft 7 str)
+            Internal.chompAfterProtocol Http (Helper.dropLeft 7 str)
         elif str.StartsWith "https://" then
-            Internal.chompAfterProtocol Https (dropLeft 8 str)
+            Internal.chompAfterProtocol Https (Helper.dropLeft 8 str)
         else None
 
     let percentEncode (str : string) : string = JS.encodeURIComponent str
