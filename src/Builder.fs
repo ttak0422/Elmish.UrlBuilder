@@ -21,7 +21,7 @@ module Builder =
             | Relative -> ""
             | CrossOrigin prePath -> prePath + "/"
 
-    let num (key : string) (value : int) : QueryPatameter =
+    let i32 (key : string) (value : int) : QueryPatameter =
         QueryPatameter(percentEncode key, (string value))
     let str (key : string) (value : string) : QueryPatameter =
         QueryPatameter(percentEncode key, percentEncode value)

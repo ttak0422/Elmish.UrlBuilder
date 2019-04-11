@@ -113,7 +113,7 @@ percentDecode "%C2" = None
 **<font color = "Red">The following function name is different from elm/url</font>**
 
 - **<font color = "Red">str (in elm/url is string)</font>**
-- **<font color = "Red">num (in elm/url is int)</font>**
+- **<font color = "Red">i32 (in elm/url is int)</font>**
 
 ```fsharp
 type QueryPatameter = QueryPatameter of  keyValue : string * string
@@ -135,10 +135,10 @@ absolute [ "products" ] [ str "search" "coffee table" ]
 ```
 
 ```fsharp
-num // string -> int -> QueryParameter
+i32 // string -> int -> QueryParameter
 
 // sample
-absolute [ "products" ] [ str "search" "hat"; num "page" 2 ]
+absolute [ "products" ] [ str "search" "hat"; i32 "page" 2 ]
 (*
 	"/products?search=hat&page=2"
 *)
@@ -197,7 +197,7 @@ absolute [ "blog"; string 42 ] []
 	"/blog/42"
 *)
 
-absolute [ "products" ] [ str "search" "hat"; num "page" 2 ]
+absolute [ "products" ] [ str "search" "hat"; i32 "page" 2 ]
 (*
 	"/products?search=hat&page=2"
 *)
@@ -222,7 +222,7 @@ relative [ "blog"; string 42 ] []
 	"blog/42"
 *)
 
-relative [ "products" ] [ str "search" "hat"; num "page" 2 ]
+relative [ "products" ] [ str "search" "hat"; i32 "page" 2 ]
 (*
 	"products?search=hat&page=2"
 *)

@@ -37,7 +37,7 @@ let tests : Test =
                          testList "int" [ testCase "simple" <| fun _ ->
                                               let expected =
                                                   QueryPatameter("page", "2")
-                                              let actual = num "page" 2
+                                              let actual = i32 "page" 2
                                               equal expected actual ]
                          testList "string" [ testCase "simple" <| fun _ ->
                                                  let expected =
@@ -48,7 +48,7 @@ let tests : Test =
                          testList "toQuery" [ testCase "one int query" <| fun _ ->
                                                   let expected = "?page=2"
                                                   let actual =
-                                                      toQuery [ num "page" 2 ]
+                                                      toQuery [ i32 "page" 2 ]
                                                   equal expected actual
                                               testCase "one string query" <| fun _ ->
                                                   let expected = "?search=hat"
@@ -72,7 +72,7 @@ let tests : Test =
                                                   let actual =
                                                       toQuery [ str "search"
                                                                     "hat"
-                                                                num "page" 2 ]
+                                                                i32 "page" 2 ]
                                                   equal expected actual ]
                          testList "abusolute" [ testCase "simple case 1" <| fun _ ->
                                                     let expected = "/"
@@ -102,7 +102,7 @@ let tests : Test =
                                                     let actual =
                                                         absolute [ "products" ]
                                                             [ str "search" "hat"
-                                                              num "page" 2 ]
+                                                              i32 "page" 2 ]
                                                     equal expected actual ]
                          testList "relative" [ testCase "simple case 1" <| fun _ ->
                                                    let expected = ""
@@ -130,7 +130,7 @@ let tests : Test =
                                                    let actual =
                                                        relative [ "products" ]
                                                            [ str "search" "hat"
-                                                             num "page" 2 ]
+                                                             i32 "page" 2 ]
                                                    equal expected actual ]
                          testList "crossOrigin" [ testCase "simple case 1" <| fun _ ->
                                                       let expected =
