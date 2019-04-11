@@ -36,6 +36,26 @@ let tests : Test =
                                       let expected = "345678"
                                       let actual = Helper.slice 3 -1 str
                                       equal expected actual
+                                  testCase "elm test 1" <| fun _ ->
+                                      let str = "snakes on a plane!"
+                                      let expected = "on"
+                                      let actual = Helper.slice 7 9 str
+                                      equal expected actual
+                                  testCase "elm test 2" <| fun _ ->
+                                      let str = "snakes on a plane!"
+                                      let expected = "snakes"
+                                      let actual = Helper.slice 0 6 str
+                                      equal expected actual
+                                  testCase "elm test 3" <| fun _ ->
+                                      let str = "snakes on a plane!"
+                                      let expected = "snakes on a"
+                                      let actual = Helper.slice 0 -7 str
+                                      equal expected actual
+                                  testCase "elm test 4" <| fun _ ->
+                                      let str = "snakes on a plane!"
+                                      let expected = "plane"
+                                      let actual = Helper.slice -6 -1 str
+                                      equal expected actual
                                   testCase "0 0" <| fun _ ->
                                       let str = "0123456789"
                                       let expected = ""
