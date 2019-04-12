@@ -112,8 +112,8 @@ percentDecode "%C2" = None
 
 **<font color = "Red">The following function name is different from elm/url</font>**
 
-- **<font color = "Red">str (in elm/url is string)</font>**
-- **<font color = "Red">i32 (in elm/url is int)</font>**
+-   **<font color = "Red">str (in elm/url is string)</font>**
+-   **<font color = "Red">i32 (in elm/url is int)</font>**
 
 ```fsharp
 type QueryPatameter = QueryPatameter of  keyValue : string * string
