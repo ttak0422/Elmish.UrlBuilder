@@ -9,7 +9,7 @@ open Fake.IO.Globbing.Operators
 open Fake.Core.TargetOperators
 open Fake.JavaScript
 
-let srcFiles = !!"./src/Url.fsproj"
+let srcFiles = !!"./src/Elmish.UrlBuilder.fsproj"
 let fableTestsGlob = "tests/fable/**/*.fsproj"
 
 Target.create "Clean"

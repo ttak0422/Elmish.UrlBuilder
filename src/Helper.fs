@@ -1,4 +1,4 @@
-namespace U
+namespace Elmish.UrlBuilder
 
 [<RequireQualifiedAccess>]
 module Helper =

@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="../../src/Url.fsproj" />
+    <ProjectReference Include="../../src/Fable.Elmish.UrlBuilder.fsproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="../Util.fs" />

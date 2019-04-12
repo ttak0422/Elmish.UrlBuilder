@@ -1,8 +1,8 @@
 module Tests.Url
 
 open Util.Testing
-open U
-open U.Url
+open Elmish.UrlBuilder
+open Elmish.UrlBuilder.Url
 
 let tests : Test =
     testList "Url"

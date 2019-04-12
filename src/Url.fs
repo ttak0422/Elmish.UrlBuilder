@@ -1,4 +1,4 @@
-namespace U
+namespace Elmish.UrlBuilder
 
 open System
 open Fable.Import

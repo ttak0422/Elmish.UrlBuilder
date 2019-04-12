@@ -1,8 +1,8 @@
 module Tests.Builder
 
 open Util.Testing
-open U
-open U.Builder
+open Elmish.UrlBuilder
+open Elmish.UrlBuilder.Builder
 
 let tests : Test =
     testList "Builder" [ testList "toQueryPair" [ testCase "search=hat" <| fun _ ->
@@ -40,11 +40,11 @@ let tests : Test =
                                               let actual = i32 "page" 2
                                               equal expected actual ]
                          testList "str" [ testCase "simple" <| fun _ ->
-                                                 let expected =
-                                                     QueryPatameter
-                                                         ("search", "hat")
-                                                 let actual = str "search" "hat"
-                                                 equal expected actual ]
+                                              let expected =
+                                                  QueryPatameter
+                                                      ("search", "hat")
+                                              let actual = str "search" "hat"
+                                              equal expected actual ]
                          testList "toQuery" [ testCase "one int query" <| fun _ ->
                                                   let expected = "?page=2"
                                                   let actual =

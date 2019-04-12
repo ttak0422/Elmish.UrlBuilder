@@ -1,7 +1,7 @@
 module Tests.Helper
 
 open Util.Testing
-open U
+open Elmish.UrlBuilder
 
 let tests : Test =
     testList "Url.Helper"
