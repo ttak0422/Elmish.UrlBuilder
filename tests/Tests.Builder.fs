@@ -34,12 +34,12 @@ let tests : Test =
                                                                 (CrossOrigin
                                                                      "https://example.com:8042")
                                                         equal expected actual ]
-                         testList "int" [ testCase "simple" <| fun _ ->
+                         testList "i32" [ testCase "simple" <| fun _ ->
                                               let expected =
                                                   QueryPatameter("page", "2")
                                               let actual = i32 "page" 2
                                               equal expected actual ]
-                         testList "string" [ testCase "simple" <| fun _ ->
+                         testList "str" [ testCase "simple" <| fun _ ->
                                                  let expected =
                                                      QueryPatameter
                                                          ("search", "hat")
