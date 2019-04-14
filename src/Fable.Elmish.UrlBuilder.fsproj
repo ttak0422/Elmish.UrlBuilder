@@ -1,4 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Description>Elm inspired URL builder.</Description>
+    <PackageProjectUrl>https://github.com/ttak0422/Elmish.UrlBuilder</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/ttak0422/Elmish.UrlBuilder/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/ttak0422/Elmish.UrlBuilder</RepositoryUrl>
+    <PackageTags>fable;fsharp;</PackageTags>
+    <Authors>ttak0422</Authors>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>

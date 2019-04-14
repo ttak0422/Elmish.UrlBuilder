@@ -5,6 +5,8 @@ build/
 obj
 bin
 out
+# NuGet
+*.nupkg
 
 # Logs
 logs
