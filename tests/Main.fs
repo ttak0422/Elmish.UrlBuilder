@@ -10,7 +10,7 @@ let describe (name : string) (f : unit -> unit) = jsNative
 let it (msg : string) (f : unit -> unit) = jsNative
 
 let run() =
-    let tests = [ Helper.tests; Url.tests; Builder.tests ] :> Test seq
+    let tests = [ Url.tests; Builder.tests ] :> Test seq
     for (moduleName, moduleTests) in tests do
         describe moduleName <| fun () ->
             for (name, tests) in moduleTests do
