@@ -5,7 +5,8 @@
 
 - master
 
-  [![Build status](https://ci.appveyor.com/api/projects/status/noi4pduruj1k1fqi?svg=true)](https://ci.appveyor.com/project/ttak0422/elmish-urlbuilder) [![Build Status](https://travis-ci.org/ttak0422/Elmish.UrlBuilder.svg?branch=master)](https://travis-ci.org/ttak0422/Elmish.UrlBuilder)
+  [![Build status](https://ci.appveyor.com/api/projects/status/noi4pduruj1k1fqi/branch/master?svg=true)](https://ci.appveyor.com/project/ttak0422/elmish-urlbuilder/branch/master)
+  [![Build Status](https://travis-ci.org/ttak0422/Elmish.UrlBuilder.svg?branch=master)](https://travis-ci.org/ttak0422/Elmish.UrlBuilder)
 
 - dev
 
