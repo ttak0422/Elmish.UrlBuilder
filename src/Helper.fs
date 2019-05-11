@@ -1,7 +1,7 @@
 namespace Elmish.UrlBuilder
 
 [<RequireQualifiedAccess>]
-module Helper =
+module internal Helper =
     /// **Description**
     ///
     /// Get all of the indexes for a substring in another string.
