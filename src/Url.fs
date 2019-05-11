@@ -2,7 +2,7 @@ namespace Elmish.UrlBuilder
 
 open System
 #if FABLE_COMPILER
-open Fable.Import
+open Fable.Core
 #endif
 
 type Protocol =
@@ -160,7 +160,7 @@ module Url =
     ///
     /// **Output Type**
     ///   * `string`
-    let percentEncode (str : string) : string = 
+    let percentEncode (str : string) : string =
         #if FABLE_COMPILER
         JS.encodeURIComponent str
         #else
