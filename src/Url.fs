@@ -1,7 +1,9 @@
 namespace Elmish.UrlBuilder
 
 open System
-open Fable.Import
+#if FABLE_COMPILER
+open Fable.Core
+#endif
 
 type Protocol =
     | Http
@@ -158,7 +160,12 @@ module Url =
     ///
     /// **Output Type**
     ///   * `string`
-    let percentEncode (str : string) : string = JS.encodeURIComponent str
+    let percentEncode (str : string) : string =
+        #if FABLE_COMPILER
+        JS.encodeURIComponent str
+        #else
+        failwith "Fable.Elmish.UrlBuilder is designed for fable"
+        #endif
 
     /// **Description**
     ///
@@ -170,6 +177,10 @@ module Url =
     /// **Output Type**
     ///   * `Option<string>`
     let percentDecode (str : string) : Option<string> =
+        #if FABLE_COMPILER
         try
             Some(JS.decodeURIComponent str)
         with _ -> None
+        #else
+        failwith "Fable.Elmish.UrlBuilder is designed for fable"
+        #endif

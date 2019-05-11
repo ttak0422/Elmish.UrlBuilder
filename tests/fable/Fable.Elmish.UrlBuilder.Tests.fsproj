@@ -8,7 +8,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="../Util.fs" />
-    <Compile Include="../Tests.Helper.fs" />
     <Compile Include="../Tests.Url.fs" />
     <Compile Include="../Tests.Builder.fs" />
     <Compile Include="../Main.fs" />
