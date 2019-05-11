@@ -1,17 +1,15 @@
 # Elmish.UrlBuilder
 
 [![NuGet version](https://badge.fury.io/nu/Fable.Elmish.UrlBuilder.svg)](https://badge.fury.io/nu/Fable.Elmish.UrlBuilder)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ff726cda5320446ca1947c1aa439b8cc)](https://www.codacy.com/app/ttak0422/U?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ttak0422/U&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ff726cda5320446ca1947c1aa439b8cc)](https://www.codacy.com/app/ttak0422/U?utm_source=github.com&utm_medium=referral&utm_content=ttak0422/U&utm_campaign=Badge_Grade)
 
--   master
+- master
 
-	[![Build status](https://ci.appveyor.com/api/projects/status/noi4pduruj1k1fqi?svg=true)](https://ci.appveyor.com/project/ttak0422/elmish-urlbuilder) [![Build Status](https://travis-ci.org/ttak0422/Elmish.UrlBuilder.svg?branch=master)](https://travis-ci.org/ttak0422/Elmish.UrlBuilder)
+  [![Build status](https://ci.appveyor.com/api/projects/status/noi4pduruj1k1fqi?svg=true)](https://ci.appveyor.com/project/ttak0422/elmish-urlbuilder) [![Build Status](https://travis-ci.org/ttak0422/Elmish.UrlBuilder.svg?branch=master)](https://travis-ci.org/ttak0422/Elmish.UrlBuilder)
 
--   dev
+- dev
 
-	![Build status](https://ci.appveyor.com/api/projects/status/noi4pduruj1k1fqi/branch/dev?svg=true) [![Build Status](https://travis-ci.org/ttak0422/Elmish.UrlBuilder.svg?branch=dev)](https://travis-ci.org/ttak0422/Elmish.UrlBuilder)
-
-
+  ![Build status](https://ci.appveyor.com/api/projects/status/noi4pduruj1k1fqi/branch/dev?svg=true) [![Build Status](https://travis-ci.org/ttak0422/Elmish.UrlBuilder.svg?branch=dev)](https://travis-ci.org/ttak0422/Elmish.UrlBuilder)
 
 ## About
 
@@ -122,8 +120,8 @@ percentDecode "%C2" = None
 
 **<font color = "Red">The following function name is different from elm/url</font>**
 
--   **<font color = "Red">str (in elm/url is string)</font>**
--   **<font color = "Red">i32 (in elm/url is int)</font>**
+- **<font color = "Red">str (in elm/url is string)</font>**
+- **<font color = "Red">i32 (in elm/url is int)</font>**
 
 ```fsharp
 type QueryPatameter = QueryPatameter of  keyValue : string * string
