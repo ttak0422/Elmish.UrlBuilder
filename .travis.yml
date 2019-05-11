@@ -1,6 +1,6 @@
 language: csharp
 mono: latest
-dotnet: 2.2.101
+dotnet: 2.2.203
 dist: bionic
 sudo: required
 
