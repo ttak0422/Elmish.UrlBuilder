@@ -17,6 +17,7 @@ type Url =
       Query : Option<string>
       Fragment : Option<string> }
 
+[<CompilationRepresentationAttribute(CompilationRepresentationFlags.ModuleSuffix)>]
 module Url =
     module Internal =
         let addPort (maybePort : Option<int>) (starter : string) : string =
