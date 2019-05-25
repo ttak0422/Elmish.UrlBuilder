@@ -123,8 +123,7 @@ let pushNuget (releaseNotes : ReleaseNotes.ReleaseNotes) (projFile : string) =
                 |> Some)
         DotNet.pack (fun p ->
             { p with Configuration = DotNet.Release
-                     Common = { p.Common with DotNetCliPath = "dotnet" }
-                     OutputPath = Some(projDir </> "./nupkg") }) projFile
+                     Common = { p.Common with DotNetCliPath = "dotnet" }}) projFile
         let files =
             Directory.GetFiles(projDir </> "./nupkg", "*.nupkg")
             |> Array.find
