@@ -125,13 +125,12 @@ let pushNuget (releaseNotes : ReleaseNotes.ReleaseNotes) (projFile : string) =
             { p with Configuration = DotNet.Release
                      Common = { p.Common with DotNetCliPath = "dotnet" }}) projFile
         let files =
-            Directory.GetFiles(projDir </> "./nupkg", "*.nupkg")
+            Directory.GetFiles(projDir </> "bin" </> "Release", "*.nupkg")
             |> Array.find
                    (fun nupkg -> nupkg.Contains(releaseNotes.NugetVersion))
             |> fun x -> [ x ]
         Paket.pushFiles (fun o ->
             { o with ApiKey = nugetKey
-                     WorkingDir = projDir </> "./nupkg"
                      PublishUrl = "https://www.nuget.org/api/v2/package" })
             files
 
@@ -144,4 +143,4 @@ Target.create "Publish" (fun _ ->
            pushNuget release projFile))
 Target.create "Test" (fun _ -> printfn "Test")
 "Clean" ==> "YarnInstall" ==> "DotnetRestore" ==> "MochaTest" ==> "Publish"
-Target.runOrDefault "MochaTest"
+Target.runOrDefault "Publish"
