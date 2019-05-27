@@ -131,6 +131,7 @@ let pushNuget (releaseNotes : ReleaseNotes.ReleaseNotes) (projFile : string) =
             |> fun x -> [ x ]
         Paket.pushFiles (fun o ->
             { o with ApiKey = nugetKey
+                     WorkingDir = projDir </> "bin" </> "Release"
                      PublishUrl = "https://www.nuget.org/api/v2/package" })
             files
 
@@ -143,4 +144,4 @@ Target.create "Publish" (fun _ ->
            pushNuget release projFile))
 Target.create "Test" (fun _ -> printfn "Test")
 "Clean" ==> "YarnInstall" ==> "DotnetRestore" ==> "MochaTest" ==> "Publish"
-Target.runOrDefault "Publish"
+Target.runOrDefault "MochaTest"
