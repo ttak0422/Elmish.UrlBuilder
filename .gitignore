@@ -5,6 +5,7 @@ build/
 obj
 bin
 out
+.ionide
 # NuGet
 *.nupkg
 
