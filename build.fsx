@@ -8,16 +8,12 @@ open System
 #r "./packages/netcorebuild/NETStandard.Library.NETFramework/build/net461/lib/netstandard.dll"
 #endif
 
-
-open Fake.Core
 open Fake.DotNet
 open Fake.IO
 open Fake.IO.FileSystemOperators
 open Fake.IO.Globbing.Operators
 open Fake.Core.TargetOperators
 open Fake.JavaScript
-open System
-open System.Text
 open System.IO
 
 let srcFiles = !!"./src/Fable.Elmish.UrlBuilder.fsproj"
@@ -29,8 +25,7 @@ module Util =
         |> Array.map (visitor)
         |> fun lines -> File.WriteAllLines(fileName, lines)
 
-    let replaceLines (replacer : string -> Match -> string option) (reg : Regex)
-        (fileName : string) =
+    let replaceLines (replacer : string -> Match -> string option) (reg : Regex) (fileName : string) =
         fileName
         |> visitFile (fun line ->
                let m = reg.Match(line)
@@ -63,14 +58,15 @@ module Logger =
         Printf.kprintf (fun s ->
             use c = consoleColor ConsoleColor.Red in printfn "%s" s) str
 
-Target.create "Clean"
-<| fun _ ->
+Target.create "Clean" <| fun _ ->
     !!"src/**/bin" ++ "src/**/obj" ++ "tests/**/bin" ++ "tests/**/obj"
     |> Shell.cleanDirs
+
 Target.create "YarnInstall" <| fun _ -> Yarn.install id
-Target.create "DotnetRestore"
-<| fun _ ->
+
+Target.create "DotnetRestore" <| fun _ ->
     srcFiles ++ fableTestsGlob |> Seq.iter (fun proj -> DotNet.restore id proj)
+
 Target.create "MochaTest" <| fun _ ->
     !!fableTestsGlob
     |> Seq.iter (fun proj ->
@@ -123,26 +119,26 @@ let pushNuget (releaseNotes : ReleaseNotes.ReleaseNotes) (projFile : string) =
                 |> Some)
         DotNet.pack (fun p ->
             { p with Configuration = DotNet.Release
-                     Common = { p.Common with DotNetCliPath = "dotnet" }
-                     OutputPath = Some(projDir </> "./nupkg") }) projFile
+                     Common = { p.Common with DotNetCliPath = "dotnet" }}) projFile
         let files =
-            Directory.GetFiles(projDir </> "./nupkg", "*.nupkg")
+            Directory.GetFiles(projDir </> "bin" </> "Release", "*.nupkg")
             |> Array.find
                    (fun nupkg -> nupkg.Contains(releaseNotes.NugetVersion))
             |> fun x -> [ x ]
         Paket.pushFiles (fun o ->
             { o with ApiKey = nugetKey
-                     WorkingDir = projDir </> "./nupkg"
+                     WorkingDir = projDir </> "bin" </> "Release"
                      PublishUrl = "https://www.nuget.org/api/v2/package" })
             files
 
-Target.create "Publish" (fun _ ->
+Target.create "Publish" <| fun _ ->
     srcFiles
     |> Seq.iter (fun s ->
            let projFile = s
            let projDir = IO.Path.GetDirectoryName(projFile)
            let release = projDir </> "RELEASE_NOTES.md" |> ReleaseNotes.load
-           pushNuget release projFile))
+           pushNuget release projFile)
+
 Target.create "Test" (fun _ -> printfn "Test")
 "Clean" ==> "YarnInstall" ==> "DotnetRestore" ==> "MochaTest" ==> "Publish"
 Target.runOrDefault "MochaTest"
