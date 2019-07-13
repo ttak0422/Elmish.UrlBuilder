@@ -1,23 +1,23 @@
-open Fake.Core
-open System.Text.RegularExpressions
-open System
-
 #r "paket: groupref netcorebuild //"
 #load ".fake/build.fsx/intellisense.fsx"
 #if !FAKE
 #r "./packages/netcorebuild/NETStandard.Library.NETFramework/build/net461/lib/netstandard.dll"
 #endif
 
+
+
+open System
+open System.IO
+open System.Text.RegularExpressions
+open Fake.Core
+open Fake.Core.TargetOperators
 open Fake.DotNet
+open Fake.JavaScript
 open Fake.IO
 open Fake.IO.FileSystemOperators
 open Fake.IO.Globbing.Operators
-open Fake.Core.TargetOperators
-open Fake.JavaScript
-open System.IO
 
-let srcFiles = !!"./src/Fable.Elmish.UrlBuilder.fsproj"
-let fableTestsGlob = "tests/fable/**/*.fsproj"
+
 
 module Util =
     let visitFile (visitor : string -> string) (fileName : string) =
@@ -34,6 +34,8 @@ module Util =
                    match replacer line m with
                    | None -> line
                    | Some newLine -> newLine)
+
+
 
 module Logger =
     let consoleColor (fc : ConsoleColor) =
@@ -58,23 +60,7 @@ module Logger =
         Printf.kprintf (fun s ->
             use c = consoleColor ConsoleColor.Red in printfn "%s" s) str
 
-Target.create "Clean" <| fun _ ->
-    !!"src/**/bin" ++ "src/**/obj" ++ "tests/**/bin" ++ "tests/**/obj"
-    |> Shell.cleanDirs
 
-Target.create "YarnInstall" <| fun _ -> Yarn.install id
-
-Target.create "DotnetRestore" <| fun _ ->
-    srcFiles ++ fableTestsGlob |> Seq.iter (fun proj -> DotNet.restore id proj)
-
-Target.create "MochaTest" <| fun _ ->
-    !!fableTestsGlob
-    |> Seq.iter (fun proj ->
-           let projDir = Path.getDirectory proj
-           let configFile = projDir </> "splitter.config.js"
-           Yarn.exec ("fable-splitter -c " + configFile) id
-           let projDirOutput = projDir </> "bin/tests"
-           Yarn.exec ("mocha " + projDirOutput) id)
 
 let needsPublishing (versionRegex : Regex)
     (releaseNotes : ReleaseNotes.ReleaseNotes) (projFile : string) =
@@ -131,14 +117,51 @@ let pushNuget (releaseNotes : ReleaseNotes.ReleaseNotes) (projFile : string) =
                      PublishUrl = "https://www.nuget.org/api/v2/package" })
             files
 
+
+
+let srcFiles = !!"./src/Fable.Elmish.UrlBuilder.fsproj"
+let fableTestsGlob = "tests/fable/**/*.fsproj"
+
+Target.create "Clean" <| fun _ ->
+    !!"src/**/bin"
+    ++ "src/**/obj"
+    ++ "tests/**/bin"
+    ++ "tests/**/obj"
+    |> Shell.cleanDirs
+
+Target.create "YarnInstall" <| fun _ ->
+    Yarn.install id
+
+Target.create "DotnetRestore" <| fun _ ->
+    srcFiles
+    ++ fableTestsGlob
+    |> Seq.iter (fun proj -> DotNet.restore id proj)
+
+Target.create "MochaTest" <| fun _ ->
+    !!fableTestsGlob
+    |> Seq.iter (fun proj ->
+           let projDir = Path.getDirectory proj
+           let configFile = projDir </> "splitter.config.js"
+           Yarn.exec ("fable-splitter -c " + configFile) id
+           let projDirOutput = projDir </> "bin/tests"
+           Yarn.exec ("mocha " + projDirOutput) id)
+
 Target.create "Publish" <| fun _ ->
     srcFiles
     |> Seq.iter (fun s ->
            let projFile = s
-           let projDir = IO.Path.GetDirectoryName(projFile)
+           let projDir = Path.GetDirectoryName(projFile)
            let release = projDir </> "RELEASE_NOTES.md" |> ReleaseNotes.load
            pushNuget release projFile)
 
-Target.create "Test" (fun _ -> printfn "Test")
-"Clean" ==> "YarnInstall" ==> "DotnetRestore" ==> "MochaTest" ==> "Publish"
+
+
+"Clean"
+    ==> "YarnInstall"
+    ==> "DotnetRestore"
+    ==> "MochaTest"
+    ==> "Publish"
+
+
+
 Target.runOrDefault "MochaTest"
