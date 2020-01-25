@@ -1063,10 +1063,10 @@ fable-loader@^2.1.5:
   dependencies:
     fable-babel-plugins "^2.2.0"
 
-fable-splitter@^2.1.7:
-  version "2.1.10"
-  resolved "https://registry.yarnpkg.com/fable-splitter/-/fable-splitter-2.1.10.tgz#b99eb470793bd4c1c996ad53af7e7dfac2a30e94"
-  integrity sha512-yQeBh+63iv8mRHkMvxB2RHZyxYclIUj6Er/bKZdnEBmoV0eNqtulbbV1OrdIcCLkgeSA8050JUAvp494otWhUw==
+fable-splitter@^2.1.12:
+  version "2.1.12"
+  resolved "https://registry.yarnpkg.com/fable-splitter/-/fable-splitter-2.1.12.tgz#791f135019b0658e5414648306749d5899927653"
+  integrity sha512-BefNy4iFWxUlQinkfWDETpPmcdhIy3PQJbSiHzBLiA/Igp2ySLuEPw7BMZCRVXsJg8eMv+glkSVllT/rXzgk0A==
   dependencies:
     "@babel/core" "^7.1.6"
     "@babel/plugin-transform-modules-commonjs" "^7.1.0"
